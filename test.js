@@ -26,7 +26,7 @@ var buttonClickerHandler = function (event) {
   }
 };
 
-// Function that does the get weather fetch
+// Function that fetch the weather
 var getWeather = function (city) {
   var apiUrl =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -38,12 +38,17 @@ var getWeather = function (city) {
     if (response.ok) {
       response.json().then(function (data) {
         console.log(data);
-        handleAddingResponseToHtml(data.temp)
+        // handleAddingResponseToHtml(data.temp)
       });
     } else {
       alert("Error" + response.statusText);
     }
   });
+
+// parse the data received
+ var response = data;
+ console.log(response);
+
 };
 
 // Function that does the forecast fetch
@@ -66,12 +71,13 @@ var getForecast = function (city) {
   .then(data => {
   handleAddingResponseToHtml()
 })
-
 };
 
 // Function that will display the weather
 function handleAddingResponseToHtml(city, weather) {
-    
+  console.log(apiUrl.data);
 }
+
 // Add event listener Function
 searchBtn.addEventListener("click", buttonClickerHandler);
+// parse the result tratAR la respuesta del API como un string tomar el restulado como un string variable, hacer una function que separa en variables que hace un array, cada segmento del string va a tener su propia variable, weather parentesis 1 sería la primera parte, 

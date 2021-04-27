@@ -7,30 +7,24 @@ var apiId = '28f368d87ec745030ac7ec673fb2056a';
 var searchBtn = document.querySelector(".searchBtn");
 
 // Function that get the user input for the city and looks for it
-function userSearch (city) {
- var searchBtn = document.querySelector(".searchBtn");
- searchBtn.addEventListener("click", function(event){
-   event.preventDefault();
+searchBtn.addEventListener("click", function (e){
+  e.preventDefault();
 
-   city = cityName.value.trim()
-   displayW.textContent = city;
-   getCurrentW(city);
-  //  getFiveDays(city);
-
- })
-};
+  getCurrentW(city);
+})
 
 // Create a function called showWeather that would display the weather and the five days forecast
-function showWeather(city, data) {
-  saveSelectedCity.textContent = displayW;
-  getCurrentW(city, data.current);
-  getFiveDaysW(data.daily)
-}
+// function showWeather(city, data) {
+//   saveSelectedCity.textContent = displayW;
+//   getCurrentW(city, data.current);
+//   getFiveDaysW(data.daily)
+// }
 
 // Function that gets the current weather based in the chosen city
-var getCurrentW = function(city) {
+function getCurrentW (city) {
+  city = document.getElementById("city").value.trim();
+
     var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + apiId + '&units=imperial';
-    console.log(apiUrl);
 
     fetch(apiUrl)
     .then(function (response) {
@@ -39,25 +33,36 @@ var getCurrentW = function(city) {
         } else {
         alert('Error: ' + response.statusText);
       }
-      console.log(response.json());
-})
-.then(data => {
-  var weather = data;
+}).then(data => {
+  console.log(data);
+  console.log(data.name, data.main.temp, "Farenheit");
   var long = data.coord.lon;
   var lat = data.coord.lat;
+  
+  var temp = document.createElement("div");
+  temp.innerHTML=data.main.temp;
+  var wind = document.createElement("div");
+  wind.innerHTML=data.wind.speed;
+  var humidity = document.createElement("div");
+  humidity.innerHTML = data.main.humidity;
 
-  fetch(`https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&long=${long}&appid=${apiId}`)
+// Dislay the weather
+  displayW.append("Tempeture: ", temp);
+  displayW.append("Wind: ", wind);
+  displayW.append("Humidity: ", humidity);
+  
+
+  fetch(`https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${long}&appid=${apiId}`)
   .then(function (response) {
     if (response.ok) {
       return (response.json());
       } else {
       alert('Error: ' + response.statusText);
     }
-    console.log(response.json());
 })
-// .then(data => {
-//   handleAddingResponseToHtml add the data to the HTML
-// })
+.then(data => {
+  console.log(data);
+})
 })
 }
 
@@ -86,4 +91,4 @@ var getFiveDays = function (location) {
 
 // On click event listener
 // userFormEl.addEventListener('submit', formSubmitCity);
-searchBtn.addEventListener('click', buttonClickerHandler);
+// searchBtn.addEventListener('click', buttonClickerHandler);

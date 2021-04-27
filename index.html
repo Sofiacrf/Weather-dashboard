@@ -13,17 +13,17 @@
     <title>Weather Site</title>
   </head>
 
-  <body flex-column min-100-vh>
+  <body class="flex-column min-100-vh">
     <!-- Header -->
     <header class="hero">
       <h1 class="title bg-primary display-4">Weather Dashboard</h1>
     </header>
     <!-- Section that displays the cities -->
-    <main class="flex-row justify-space-between">
+    <main class="flexbox-container flex-row justify-space-between">
       <div class="col-12 col-md-4">
 
         <div class="card">
-          <h3 class="card-header">Search for a City</h3>
+          <h3 class="card-header">Search for a city</h3>
           <form id="user-form" class="card-body">
             <input name="city" id="city" type="text" class="form-control"/>
             <button type="submit" class="searchBtn btn btn-primary btn-lg col-12 mx-auto">Search</button>
@@ -31,17 +31,20 @@
         </div> 
       </div>
 
-      <!-- Section that displays the weather -->
-      <div clas="col-12 col-md-8">
-        <h6 class="subtitle"><span id="weather-search"></span></h6>
-          <!-- Weather container -->
-          <div id="weather-container" class="display-weather"></div>
-          <!-- 5 Days forecast -->
-          <div id="five-day-forecast" class="display-days"></div>
-      </div>
-    </main>
+  
+       <!-- Section that displays the weather -->
+    <div clas="col-12 col-md-8">
+      <h6 class="subtitle">The weather of the selected city is...<span id="weather-search"></span></h6>
+        <!-- Weather container -->
+        <div id="weather-container" class="display-weather"></div>
+        <!-- 5 Days forecast -->
+        <div id="five-day-forecast" class="display-days"></div>
+    </div>
+    
 
-    <!-- <script src="./script.js"></script> -->
-    <script src="test.js"></script>
+  </main>
+
+    <script src="./script.js"></script>
+    <!-- <script src="test.js"></script> -->
   </body>
 </html>
