@@ -23,7 +23,9 @@ header {
 h6 {
     color: grey;
 }
-.display-weather {
+.display-weather, .display-days {
+    border-style:ridge;
+    background-color: white;
     height: 200px;
     padding: 5px;
     margin: 2px;
@@ -31,7 +33,6 @@ h6 {
     width: 700px;
     cursor: pointer;
     text-align: left;
-    color: grey;
 }
 
 .flex-column {
