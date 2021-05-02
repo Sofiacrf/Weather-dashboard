@@ -23,7 +23,7 @@ header {
 h6 {
     color: grey;
 }
-.display-weather, .display-days {
+/* .display-weather, .display-days {
     border-style:ridge;
     background-color: white;
     height: 200px;
@@ -33,7 +33,7 @@ h6 {
     width: 700px;
     cursor: pointer;
     text-align: left;
-}
+} */
 
 .flex-column {
     display: flex;
@@ -48,4 +48,29 @@ h6 {
 
   body {
       background-image: url(./clouds.jpg);
+  }
+
+  li {
+      /* color: gray; */
+      list-style: none;
+  }
+
+  .low {
+      background-color: green;
+  }
+
+  .moderate {
+      background-color: yellow;
+  }
+
+  .high {
+      background-color: orange;
+  }
+
+  .veryHigh {
+      background-color: red;
+  }
+
+  .extreme {
+      background-color: gray;
   }
