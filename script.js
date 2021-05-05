@@ -3,6 +3,7 @@ var cityName = document.querySelector("#city");
 var displayW = document.querySelector("#weather-container");
 var displayTemp = document.querySelector("#display-temp");
 var displayDays = document.querySelector("#five-day-forecast");
+var displayFive = document.querySelector("#display-five");
 var showingWeather = document.querySelector("#weather-search");
 var apiId = "28f368d87ec745030ac7ec673fb2056a";
 var searchBtn = document.querySelector(".searchBtn");
@@ -21,7 +22,7 @@ function getCurrentW(city) {
 
   //Function that creates a button based on the selected city
   var cityBtn = document.createElement("button");
-  cityBtn.setAttribute("class", "btn btn-outline-secondary btn-block");
+  cityBtn.setAttribute("class", "btn btn-secondary btn-block");
   cityBtn.setAttribute("data-value", city);
   cityBtn.textContent = city;
   // Append to the list
@@ -62,15 +63,15 @@ function getCurrentW(city) {
       displayTemp.setAttribute("class", "list-group-flush"); // ul
       temp.setAttribute(
         "class",
-        "list-group-item-info border-0  text-white size10"
+        "list-group-item-info border-0 text-grey size10"
       ); // li
       wind.setAttribute(
         "class",
-        "list-group-item-info border-0  text-white size10"
+        "list-group-item-info border-0 text-grey size10"
       ); // li
       humidity.setAttribute(
         "class",
-        "list-group-item-info border-0  text-white size10"
+        "list-group-item-info border-0 text-grey size10"
       ); //li
 
       // Append the elements on HTML in order to display it on the website
@@ -95,24 +96,17 @@ function getCurrentW(city) {
           //Append the elements on HTML in order to display it on the website
           var uvIndex = document.createElement("li");
           uvIndex.innerHTML = "UV Index: " + data.value + "%";
-          uvIndex
+          uvIndex;
           console.log(uvIndex);
 
-          // Set the class of the UV Index
-          // var uvIndex = data.value;
-          // var uvConLow = low;
-          // var uvConMod = moderate;
-          // var uvConHigh = high;
-          // var uvConVeryHigh = veryHigh;
-          // var uvConExt = extreme;
-
+          // Add a class to display the style accordingly
           if (uvIndex > 0 && uvIndex < 3) {
             uvIndex.data.value.setAttribute("class", "low");
           } else if (uvIndex >= 3 && uvIndex < 6) {
             uvIndex.setAttribute("class", "moderate");
-          } else if (uvIndex >=6 && uvIndex < 8) {
+          } else if (uvIndex >= 6 && uvIndex < 8) {
             uvIndex.setAttribute("class", "high");
-          } else if (uvIndex >=8 && uvIndex < 11) {
+          } else if (uvIndex >= 8 && uvIndex < 11) {
             uvIndex.setAttribute("class", "veryHigh");
           } else {
             uvIndex.setAttribute("class", "extreme");
@@ -133,21 +127,50 @@ function getCurrentW(city) {
         .then((data) => {
           console.log(data);
           //Create the variables that will show the forecast
-
           for (var i = 0; i < 5; i++) {
+
+            //  To get the date without the time
+            var longDate = data.list[i].dt;
+            var shortDate = longDate * 1000;
+            var newDate = new Date(shortDate);
+            var forecastDate = document.createElement("li");
+            forecastDate.innerHTML = newDate.toLocaleDateString();
+
+            
+
             var forecastTemp = document.createElement("li");
-            forecastTemp.setAttribute("class", "col l10 s12");
-            forecastTemp.innerHTML = data.list[i].main.temp;
-
+            forecastTemp.innerHTML = data.list[i].main.temp + " °F";
             var forecastWind = document.createElement("li");
-            forecastWind.innerHTML = data.list[i].wind.speed;
-
+            forecastWind.innerHTML = data.list[i].wind.speed + " MPH";
             var forecastHum = document.createElement("li");
-            forecastHum.innerHTML = data.list[i].main.humidity;
+            forecastHum.innerHTML = data.list[i].main.humidity + " %";
 
-            displayDays.append("Temp: ", forecastTemp, "°F");
-            displayDays.append("Wind: ", forecastWind, "MPH");
-            displayDays.append("Humidity", forecastHum, "%");
+            // Setting the classes for each element
+            forecastDate.setAttribute("class",
+            "list-group-item-info border-0 text-grey size10");
+            displayFive.setAttribute("class", "card");
+            displayFive.setAttribute("style", "width: 40rem;");
+            displayFive.setAttribute("class", "column-count:5");
+            forecastTemp.setAttribute(
+              "class",
+              "list-group-item-info border-0 text-grey size10"
+            );
+            forecastWind.setAttribute(
+              "class",
+              "list-group-item-info border-0 text-grey size10"
+            );
+            forecastHum.setAttribute(
+              "class",
+              "list-group-item-info border-0 text-grey size10"
+            );
+
+            //Append the element on HTML in order to display it on the website
+            
+            displayFive.append(forecastDate);
+            displayFive.append("Temperature: ", forecastTemp);
+            displayFive.append("Wind: ", forecastWind);
+            displayFive.append("Humidity: ", forecastHum);
+            displayDays.append(displayFive);
 
             //  To get the icon
             var icon = data.list[0].weather[0].icon;
@@ -159,14 +182,7 @@ function getCurrentW(city) {
             displayIcon.append(icon);
           }
 
-          for (var i = 0; i < 5; i++) {
-            //  To get the date without the time
-            var longDate = data.list[i].dt;
-            var shortDate = longDate * 1000;
-            var newDate = new Date(shortDate);
-            var newDatestring = newDate.toLocaleDateString();
-            console.log(newDatestring);
-          }
+  
         });
     });
   saveCity();
@@ -174,13 +190,16 @@ function getCurrentW(city) {
 
 // Save on local storage
 var saveCity = function (city) {
+  console.log(displayTemp);
+  console.log(displayDays);
   var cityInput = document.querySelector("#city").value;
   var cityHistory = JSON.parse(localStorage.getItem("cities")) || [];
   var isStored = false;
 
   var cityObject = {
     cityInput: cityInput,
-    city: city,
+    displayW: displayW,
+    displayDays: displayDays
   };
 
   for (var i = 0; i < cityHistory.length; i++) {
@@ -193,4 +212,6 @@ var saveCity = function (city) {
     cityHistory.push(cityObject);
     localStorage.setItem("cities", JSON.stringify(cityHistory));
   }
+  displayTemp.innerHTML = "";
+  displayFive.innerHTML = "";
 };
