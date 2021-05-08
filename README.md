@@ -30,7 +30,7 @@ This project is in its testing phase.
 
 ## Contact information
 Sofia Rojas
-sofiacarf@gmail.com
+email: sofiacarf@gmail.com
 
 ## Link to the website
 https://sofiacrf.github.io/Weather-dashboard/
