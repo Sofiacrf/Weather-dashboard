@@ -1,3 +1,4 @@
+// Global variables
 var userFormEl = document.querySelector("#user-form");
 var cityName = document.querySelector("#city");
 var displayW = document.querySelector("#weather-container");
@@ -136,8 +137,7 @@ function getCurrentW(city) {
             var forecastDate = document.createElement("li");
             forecastDate.innerHTML = newDate.toLocaleDateString();
 
-            
-
+            // Get the temperature variables
             var forecastTemp = document.createElement("li");
             forecastTemp.innerHTML = data.list[i].main.temp + " °F";
             var forecastWind = document.createElement("li");
@@ -195,6 +195,7 @@ var saveCity = function (city) {
   var cityHistory = JSON.parse(localStorage.getItem("cities")) || [];
   var isStored = false;
 
+//  Create an object for the local storage
   var cityObject = {
     cityInput: cityInput,
     displayW: displayW,
