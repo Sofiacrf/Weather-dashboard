@@ -23,17 +23,6 @@ header {
 h6 {
     color: grey;
 }
-/* .display-weather, .display-days {
-    border-style:ridge;
-    background-color: white;
-    height: 200px;
-    padding: 5px;
-    margin: 2px;
-    position: relative;
-    width: 700px;
-    cursor: pointer;
-    text-align: left;
-} */
 
 .flex-column, #five-day-forecast {
     display: flex;
@@ -51,7 +40,6 @@ h6 {
   }
 
   li {
-      /* color: gray; */
       list-style: none;
   }
 
