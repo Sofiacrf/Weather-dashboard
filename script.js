@@ -209,6 +209,7 @@ var saveCity = function (city) {
     }
   }
   if (!isStored) {
+    isStored = false;
     cityHistory.push(cityObject);
     localStorage.setItem("cities", JSON.stringify(cityHistory));
   }
