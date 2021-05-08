@@ -202,7 +202,9 @@ var saveCity = function (city) {
     displayDays: displayDays
   };
 
+  // For loop
   for (var i = 0; i < cityHistory.length; i++) {
+  // If statement
     if (cityHistory[i] === city) {
       isStored = true;
       break;
