@@ -24,6 +24,7 @@ h6 {
     color: grey;
 }
 
+/* Flex side */
 .flex-column, #five-day-forecast {
     display: flex;
     flex-direction: column;
@@ -43,6 +44,7 @@ h6 {
       list-style: none;
   }
 
+/* Index style */
   .low {
       background-color: green;
   }
