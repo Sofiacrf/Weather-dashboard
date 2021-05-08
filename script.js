@@ -64,15 +64,15 @@ function getCurrentW(city) {
       temp.setAttribute(
         "class",
         "list-group-item-info border-0 text-grey size10"
-      ); // li
+      ); 
       wind.setAttribute(
         "class",
         "list-group-item-info border-0 text-grey size10"
-      ); // li
+      ); 
       humidity.setAttribute(
         "class",
         "list-group-item-info border-0 text-grey size10"
-      ); //li
+      ); 
 
       // Append the elements on HTML in order to display it on the website
       displayTemp.append(city);
@@ -176,7 +176,6 @@ function getCurrentW(city) {
             var icon = data.list[0].weather[0].icon;
             var iconUrl =
               "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-            // console.log(iconUrl);
             var displayIcon = document.createElement("div");
             displayIcon.innerHTML = iconUrl;
             displayIcon.append(icon);
