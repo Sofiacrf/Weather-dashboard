@@ -6,6 +6,11 @@ The project was made in order to build a weather dashboard making it easier for 
 ## Project status
 This project is in its testing phase. 
 
+## Technologies used
+ * Javascript
+ * HTML
+ * CSS
+
 ## Installation
  * Create a repo on GitHub
  * Clone the repo on the computer
@@ -21,6 +26,11 @@ This project is in its testing phase.
 ## Finished Project
 
 ![WeatherDshboard1](WeatherDashboard1.PNG)
+![WeatherDashboard2](WeatherDashboard2.PNG)
+
+## Contact information
+Sofia Rojas
+sofiacarf@gmail.com
 
 ## Link to the website
 https://sofiacrf.github.io/Weather-dashboard/
